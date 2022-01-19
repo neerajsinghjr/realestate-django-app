@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta Tags -->
+  {% include '../includes/meta_tags.html' %}
+
+  <title>{% block Title %} {% endblock %}</title>
+
+  <!-- Pre CSS -->
+  {% include '../includes/pre_css.html' %}
+
+  <!-- Main CSS -->
+  {% include '../includes/main_css.html' %}
+
+  <!-- Post CSS-->
+  {% include '../includes/post_css.html' %}
+
+</head>
+
+<body>
+
+  <!-- Header Block -->
+  {% include '../includes/header.html' %}
+  
+  <!-- Body Main Content -->
+  {% block content%} {% endblock %}
+
+  <!-- Footer Block -->
+  {% include '../includes/footer.html' %}
+  
+  <!-- Pre JS -->
+  {% include '../includes/pre_js.html' %}
+
+  <!-- Main JS -->
+  {% include '../includes/main_js.html' %}
+
+  <!-- Post JS -->
+  {% include '../includes/post_js.html' %}
+
+  
+</body>
+
+</html>
