@@ -1,36 +1,44 @@
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+from dotenv import load_dotenv
 
+
+# PROJECT ROOT DIRECTORY: BASE_DIR / 'subdir'
+BASE_DIR = Path(__file__).resolve().parent.parent           
+
+# LOAD .ENV FILES;
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY='django-insecure-vqzw3@f&ih&m$0)am_3#h#bj0ot+j%(5+53t-rmpju9pxt0y0@'
+# APP ENCRYPTED KEY;
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG ENVIRONMENT;
 DEBUG = bool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 
 # APPLICATION PRE-REQUISITES
 INSTALLED_APPS = [
-    'config.apps.AppConfig',                # App Configurations;
+    # Django Contribs;
     'django.contrib.admin',                 # For Admin App;
     'django.contrib.auth',                  # Auth System - Login etc;
     'django.contrib.contenttypes',          
     'django.contrib.sessions',              # Manage User Session;
-    'django.contrib.messages',
+    'django.contrib.messages',              # Message User;
     'django.contrib.staticfiles',           # For Static Files;
+
+    # App Configs;
+    'config.apps.AppConfig',
+
+    # # App Models
+    # 'app.models'
+    # 'app.models.User.User',
+    # 'app.models.Realtor.Realtor',
+    # 'app.models.Listing.Listing',
 ]
 
 MIDDLEWARE = [
+    # Django Middlewares;
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -46,7 +54,9 @@ TEMPLATES = [
     {
         'APP_DIRS': True,
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'views')],
+        'DIRS': [
+            os.path.join(BASE_DIR,'views'),
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -61,22 +71,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# DATABASE CREDENTIALS;
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),     # 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME'),         # 'database name',
-        'USER': os.getenv('DB_USERNAME'),         # 'username',
-        'PASSWORD': os.getenv('DB_PASSWORD'), # 'secret',
-        'HOST': os.getenv('DB_HOST'),         # 'localhost',    
-        'PORT': os.getenv('DB_PORT'),         # '3306',
+        'ENGINE': os.getenv('DB_ENGINE'),           # 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME'),               # 'database name',
+        'USER': os.getenv('DB_USERNAME'),           # 'username',
+        'PASSWORD': os.getenv('DB_PASSWORD'),       # 'secret',
+        'HOST': os.getenv('DB_HOST'),               # 'localhost',    
+        'PORT': os.getenv('DB_PORT'),               # '3306',
     }
 }
 
 
-# Password validation
+# PASSWORD VALIDATIONS;
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [

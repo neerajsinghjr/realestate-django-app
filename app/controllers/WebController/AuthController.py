@@ -1,5 +1,8 @@
-from ..Controller import *       # Base Controller
+#------------------------------------------------------#
+# AUTH CONTROLLER
+#------------------------------------------------------#
 
+from ..Controller import *       # Base Controller
 
 
 class AuthController(Controller):
