@@ -28,13 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',           # For Static Files;
 
     # App Configs;
-    'config.apps.AppConfig',
-
-    # # App Models
-    # 'app.models'
-    # 'app.models.User.User',
-    # 'app.models.Realtor.Realtor',
-    # 'app.models.Listing.Listing',
+    'config.app.AppConfig',
 ]
 
 MIDDLEWARE = [

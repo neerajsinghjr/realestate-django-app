@@ -19,7 +19,7 @@ class Realtor(Schema.Model):
     top_seller = Schema.BooleanField(default=False)
     created = Schema.DateTimeField(default=date.now, blank=True)
     # Media Key
-    avatar = Schema.ImageField(upload_to='realtors/%Y/%m/%d/')
+    # avatar = Schema.ImageField(upload_to='realtors/%Y/%m/%d/')
 
     #-----------------
     # Models Methods

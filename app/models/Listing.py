@@ -6,6 +6,7 @@ from .Realtor import Realtor
 from datetime import datetime as date
 from django.db import models as Schema
 
+
 class Listing(Schema.Model):
 
     #-------------------
@@ -22,21 +23,23 @@ class Listing(Schema.Model):
     descripton = Schema.TextField(blank=True)
     price = Schema.IntegerField()
     bedrooms = Schema.IntegerField()
-    bathrooms = Schema.IntegerField(max_digits=2, decminal_places=1)
+    # bathrooms = Schema.IntegerField(max_digits=2, decminal_places=1)
+    bathrooms = Schema.IntegerField()
     garage = Schema.IntegerField(default=0)
     sqft = Schema.IntegerField()
     published = Schema.BooleanField(default=True)
     created = Schema.DateTimeField(default=date.now, blank=True)
-    # Media
-    photo_bg = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
-    photo_1 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
-    photo_2 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
-    photo_3 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
-    photo_4 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
-    photo_5 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # # Media
+    # photo_bg = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # photo_1 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # photo_2 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # photo_3 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # photo_4 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
+    # photo_5 = Schema.ImageField(upload_to='listings/%Y/%m/%d/')
 
     #-----------------
     # Models Methods
     #-----------------
     def __repr__(self):
         return (f"Listing 'class' {self.title}")
+
