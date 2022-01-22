@@ -11,6 +11,7 @@ class Realtor(Schema.Model):
     #-------------------
     # Model Attributes
     #-------------------    
+
     # Table Key
     name = Schema.CharField(max_length=256)
     phone = Schema.CharField(max_length=20)
@@ -18,12 +19,11 @@ class Realtor(Schema.Model):
     descripton = Schema.TextField(blank=True)
     top_seller = Schema.BooleanField(default=False)
     created = Schema.DateTimeField(default=date.now, blank=True)
-    # Media Key
-    # avatar = Schema.ImageField(upload_to='realtors/%Y/%m/%d/')
+    avatar = Schema.ImageField(upload_to='realtors/%Y/%m/%d/', blank="avatar.png")
 
     #-----------------
     # Models Methods
     #-----------------
     def __repr__(self):
-        return (f"Realtor 'class' {self.name}")
+        return (f"Realtor <'class'> {self.name}")
 

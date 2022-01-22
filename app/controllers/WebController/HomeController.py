@@ -1,4 +1,6 @@
 from ..Controller import *          # Base Controller
+from django.apps import apps
+import pdb
 
 class HomeController(Controller):
 
@@ -6,7 +8,14 @@ class HomeController(Controller):
         pass
 
     def index(self, request):
-        return render(request, "web/views/index.html")
+        models = apps.get_models()
+        context = {
+            'data': models
+        }
+        # print(models)
+        # breakpoint()
+        # pdb.set_trace()
+        return render(request, "web/views/index.html", context)
 
 
     def about(self, request):

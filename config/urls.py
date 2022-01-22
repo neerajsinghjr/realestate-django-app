@@ -21,9 +21,11 @@ webRoutesInit = [
     path('', include('routes.web')),             # Web Routes;
 ]
 
-# Static Content Routes Init
+# Static and Media Routes Init
 staticRoutesInit = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# Media Routes Init
+mediaRoutesInit = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Global Routes;
-urlpatterns = authRoutesInit + adminRoutesInit + webRoutesInit + staticRoutesInit
+urlpatterns = authRoutesInit + adminRoutesInit + webRoutesInit + staticRoutesInit + mediaRoutesInit
