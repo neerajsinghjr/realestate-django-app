@@ -1,20 +1,23 @@
 from ..Controller import *          # Base Controller
 from django.apps import apps
-import pdb
+from django.http import HttpResponse
+from json import loads, dumps, JSONEncoder, JSONDecoder
+
+from logging import config
+from app.models.Listing import Listing
+from app.models.Realtor import Realtor
 
 class HomeController(Controller):
 
     def __init__(self):
         pass
 
+
     def index(self, request):
-        models = apps.get_models()
+        listings = Listing.objects.all()
         context = {
-            'data': models
+            'listings': listings,
         }
-        # print(models)
-        # breakpoint()
-        # pdb.set_trace()
         return render(request, "web/views/index.html", context)
 
 

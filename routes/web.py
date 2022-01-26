@@ -17,8 +17,8 @@ webRoutes = [
     path('about', home.about, name='about'),
     path('contact', home.contact, name='contact'),
     path('search', home.search, name='search'),
-    path('dashboard', home.dashboard, name="dashboard"),
-    path('listings', home.listings, name="listings"),
+    path('dashboard/', home.dashboard, name="dashboard"),
+    path('listings/', home.listings, name="listings"),
     path('listing/<eid>', home.listing, name="listing"),
 ]
 

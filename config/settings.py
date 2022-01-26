@@ -26,9 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',              # Manage User Session;
     'django.contrib.messages',              # Message User;
     'django.contrib.staticfiles',           # For Static Files;
-
+    'django.contrib.humanize',
     # App Configs;
     'config.app.AppConfig',
+    'django_pdb',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +41,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware',
+
 ]
 
 ROOT_URLCONF = 'config.urls'
