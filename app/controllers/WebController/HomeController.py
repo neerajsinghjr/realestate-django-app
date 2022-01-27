@@ -1,6 +1,7 @@
+from typing import List
 from ..Controller import *          # Base Controller
 from django.apps import apps
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from json import loads, dumps, JSONEncoder, JSONDecoder
 
 from logging import config
@@ -14,15 +15,29 @@ class HomeController(Controller):
 
 
     def index(self, request):
-        listings = Listing.objects.all()
-        context = {
-            'listings': listings,
-        }
-        return render(request, "web/views/index.html", context)
+        try:
+            listings = Listing.objects.all()
+            context = {
+                'listings': listings,
+            }
+            return render(request, "web/views/index.html", context)
+
+        except Listing.DoesNotExist:
+            raise Http404("404:Listing not found")
 
 
     def about(self, request):
-        return render(request, "web/views/about.html")
+        try :
+            realtors = Realtor.objects.all()                            # Realtors
+            topSeller = realtors.filter(top_seller = True).get()        # Top Seller
+            context = {
+                'realtors' : realtors,
+                'topSeller' : topSeller,
+            }
+            return render(request, "web/views/about.html", context)
+
+        except Realtor.DoesNotExist:
+            raise Http404("404:Realtor not found")
 
 
     def contact(self, request):
@@ -38,9 +53,27 @@ class HomeController(Controller):
 
 
     def listings(self, request):
-        return render(request, 'web/views/listings.html')
+        try:
+            listings = Listing.objects.all()
+            context = {
+                'listings': listings,
+            }
+            return render(request, 'web/views/listings.html', context)
+
+        except Listing.DoesNotExist:
+            raise Http404('404:Listings not found')
+
     
 
     def listing(self, request, eid):
-        return render(request, 'web/views/listing.html')
+        try:
+            listing = Listing.objects.get(pk=eid)
+            topSeller = Realtor.objects.all().filter(top_seller = True).get()
+            context = {
+                'listing' : listing,
+                'topSeller' : topSeller,
+            }
+            return render(request, 'web/views/listing.html', context)
 
+        except Listing.DoesNotExist:
+            raise Http404('404:Listing not found')
