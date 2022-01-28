@@ -3,10 +3,12 @@ from ..Controller import *          # Base Controller
 from django.apps import apps
 from django.http import Http404, HttpResponse
 from json import loads, dumps, JSONEncoder, JSONDecoder
-
 from logging import config
+from django.http import HttpResponseRedirect
+
 from app.models.Listing import Listing
 from app.models.Realtor import Realtor
+
 
 class HomeController(Controller):
 
@@ -63,7 +65,6 @@ class HomeController(Controller):
         except Listing.DoesNotExist:
             raise Http404('404:Listings not found')
 
-    
 
     def listing(self, request, eid):
         try:
@@ -77,3 +78,23 @@ class HomeController(Controller):
 
         except Listing.DoesNotExist:
             raise Http404('404:Listing not found')
+
+
+    def httpBack(self, request):
+        return HttpResponse(str(request.META.get('HTTP_REFERER')))
+        # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+    def realtor(self, request, eid):
+        try:
+            realtor = Realtor.objects.get(pk=eid)
+            listings = realtor.listing_set.all()
+            context = {
+                'realtor' : realtor,
+                'listings' : listings,
+            }
+            return render(request, 'web/views/realtor.html', context)
+
+        except Listing.DoesNotExist:
+            raise Http404("404:Listing not found")
+

@@ -10,13 +10,26 @@
 <!-- Content Block -->
 {% block content %}
 
+    <section id="showcase-inner" class="py-5 text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1 class="display-4">{{ listing.title }}</h1>
+                    <p class="lead">
+                    <i class="fas fa-map-marker"></i> {{ listing.address }}, {{ listing.state }}, {{ listing.city }}, {{ listing.pincode }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Breadcrumb -->
     {% include '../partials/breadcrumb.html'%}
 
     <!-- Listing -->
     <section id="listing" class="py-4">
         <div class="container">
-            <a href="listings.html" class="btn btn-light mb-4">Back To Listings</a>
+            <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
             {% if listing %}
             <div class="row">
                 <div class="col-md-9">
@@ -110,19 +123,15 @@
                     <!-- Description -->
                     <div class="row mb-5">
                         <div class="col-md-12">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae esse reiciendis
-                            officia omnis non rerum dicta
-                            cupiditate nostrum molestias deserunt aut minus inventore animi atque, consequuntur ad fugit.
-                            Possimus culpa
-                            blanditiis repellendus ipsa similique ullam, natus error dolor harum.
+                            {{ listing.descripton }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Top Seller  -->
-                <!-- {% include '../partials/topseller.html' with topSeller=topSeller %} -->
+                {% include '../partials/topseller.html' with topSeller=topSeller %}
 
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <div class="card mb-3">
                         <img class="card-img-top" src="{{ topSeller.avatar.url }}" alt="{{ topSeller.name }} | Seller of the month">
                         <div class="card-body">
@@ -132,7 +141,7 @@
                         </div>
                     </div>
                     <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
-                </div> 
+                </div>  -->
             {% else %}
                 <div class="col-md-12">
                     <h2 class="lead">Sorry, Listings not found</h2>
@@ -156,7 +165,7 @@
                     <form>
                         <div class="form-group">
                             <label for="property_name" class="col-form-label">Property:</label>
-                            <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+                            <input type="text" name="listing" class="form-control" value="{{ listing.title }}" disabled>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-form-label">Name:</label>
