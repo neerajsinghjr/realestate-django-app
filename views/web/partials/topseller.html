@@ -2,9 +2,9 @@
     <div class="card">
         <img class="card-img-top" src="{{ topSeller.avatar.url }}" alt="{{ topSeller.name }} | Seller of the month">
         <div class="card-body">
-            <h5 class="card-title">Seller Of The Month</h5>
-            <h6 class="text-secondary">{{ topSeller.name }}</h6>
-            <p class="card-text">{{ topSeller.description }}</p>
+            <h5 class="card-title text-center"><i>Seller Of The Month</i></h5>
+            <h6 class="text-center"><a class="text-secondary" href="{% url 'realtor' topSeller.id %}">{{ topSeller.name }}</a></h6>
+            <p class="card-text">&spadesuit; {{ topSeller.descripton }} &spadesuit;</p>
         </div>
     </div>
 </div>
