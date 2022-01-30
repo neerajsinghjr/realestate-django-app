@@ -10,7 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
 # APP ENCRYPTED KEY;
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("APP_SECRET_KEY")
+
+# FERNET ENCRYPTED KEY;
+ENCRYPT_KEY = os.getenv("FERNET_SECRET_KEY")
 
 # DEBUG ENVIRONMENT;
 DEBUG = bool(os.getenv('DEBUG'))

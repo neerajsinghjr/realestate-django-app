@@ -5,6 +5,8 @@
 from .Realtor import Realtor 
 from datetime import datetime as date
 from django.db import models as Schema
+from cryptography.fernet import Fernet
+from django.conf import settings
 
 
 class Listing(Schema.Model):
@@ -40,6 +42,27 @@ class Listing(Schema.Model):
     #-----------------
     # Models Methods
     #-----------------
+    '''
+    @class info
+    '''
     def __repr__(self):
         return (f"Listing <'class'> {self.title}")
 
+    '''
+    @return encryptedId;
+    '''
+    def encrypt(id):
+        cipher_suite = Fernet(settings.ENCRYPT_KEY)         # Byte Key
+        encrypted_text = cipher_suite.encrypt(txt.encode('ascii'))
+        return encrypted_text
+        # try:
+        #     if not id:
+        #         return "PK not found"
+        #     txt = str(id)
+        #     cipher_suite = Fernet(settings.ENCRYPT_KEY) # key should be byte
+        #     encrypted_text = cipher_suite.encrypt(txt.encode('ascii'))
+        #     encrypted_text = base64.urlsafe_b64encode(encrypted_text).decode("ascii") 
+        #     return encrypted_text
+        # except Exception as e:
+        #     logging.getLogger("error_logger").error(traceback.format_exc())
+        #     return None
