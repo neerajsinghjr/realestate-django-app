@@ -11,10 +11,10 @@ auth = AuthController()
 
 # Auth Routes;
 authRoutes = [
-    path('', auth.login, name="admin.login"),                   # ~ fallback 
-    path('login', auth.login, name="admin.login"),
-    path('register', auth.register, name="admin.register"),
-    path('forget', auth.forget, name="admin.forget"),
+    path('', auth.login, name="auth.login"),                   # ~ fallback 
+    path('login', auth.login, name="auth.login"),
+    path('register', auth.register, name="auth.register"),
+    path('forget', auth.forget, name="auth.forget"),
 ]
 
 # Global Routes;
