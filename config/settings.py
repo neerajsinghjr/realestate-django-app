@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 
 # PROJECT ROOT DIRECTORY: BASE_DIR / 'subdir'
@@ -17,21 +18,22 @@ DEBUG = bool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 
-# APPLICATION PRE-REQUISITES
+# DJANGO APPS;
 INSTALLED_APPS = [
     # Django Contribs;
-    'django.contrib.admin',                 # For Admin App;
+    'django.contrib.admin',                 # Admin App ~ Django Inbuilt;
     'django.contrib.auth',                  # Auth System - Login etc;
     'django.contrib.contenttypes',          
     'django.contrib.sessions',              # Manage User Session;
     'django.contrib.messages',              # Message User;
     'django.contrib.staticfiles',           # For Static Files;
-    'django.contrib.humanize',
+    'django.contrib.humanize',              # Humanizer;
     # App Configs;
-    'config.app.AppConfig',
-    'django_pdb',
+    'config.app.AppConfig',                 # Dev App Config;
+    'django_pdb',                           # Django Python Debugger;
 ]
 
+# DJANGO MIDDLEWARES;
 MIDDLEWARE = [
     # Django Middlewares;
     'django.middleware.security.SecurityMiddleware',
@@ -42,11 +44,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_pdb.middleware.PdbMiddleware',
-
 ]
 
 ROOT_URLCONF = 'config.urls'
 
+# DJANGO TEMPLATES;
 TEMPLATES = [
     {
         'APP_DIRS': True,
@@ -81,8 +83,7 @@ DATABASES = {
 }
 
 
-# PASSWORD VALIDATIONS;
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# PASSWORD VALIDATIONS: https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,23 +101,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
+# INTER-NATIONALIZATION
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# STATICS FILES REGISTER
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -124,12 +117,16 @@ STATICFILES_DIRS = [
 ]
 
 
-# Media files register
-
+# MEDIA FILES REGISTER;
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+# DEFAULT PRIMARY KEY;
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# AUTHENTICATION MESSAGES;
+MESSAGE_TAGS = {
+    messages.ERROR : 'danger',
+}

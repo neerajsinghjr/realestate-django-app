@@ -116,7 +116,7 @@
                                 </li>
                                 <li class="list-group-item text-secondary">
                                     <i class="fas fa-bed"></i> Realtor:
-                                    <span class="float-right">{{ listing.realtor_id.name }}</span>
+                                    <span class="float-right">{{ listing.realtor.name }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -130,20 +130,17 @@
                     </div>
                 </div>
 
-                <!-- Top Seller  -->
-                {% include '../partials/topseller.html' with topSeller=topSeller %}
-
-                <!-- <div class="col-md-3">
+                <div class="col-md-3">
                     <div class="card mb-3">
-                        <img class="card-img-top" src="{{ topSeller.avatar.url }}" alt="{{ topSeller.name }} | Seller of the month">
+                        <img class="card-img-top" src="{{ listing.realtor.avatar.url }}" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Seller Of The Month</h5>
-                            <h6 class="text-secondary">{{ topSeller.name }}</h6>
-                            <p class="card-text">{{ topSeller.description }}</p>
+                            <h5 class="card-title"></h5>
+                            <h6 class="text-secondary text-center">{{ listing.realtor.name }}</h6>
+                            <p class="card-text"><i>About : {{ listing.realtor.descripton }}</i></p>
                         </div>
                     </div>
                     <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
-                </div>  -->
+                </div> 
             {% else %}
                 <div class="col-md-12">
                     <h2 class="lead">Sorry, Listings not found</h2>

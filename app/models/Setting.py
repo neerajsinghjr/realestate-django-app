@@ -19,5 +19,5 @@ class Setting(Schema.Model):
     created = Schema.DateTimeField(default=date.now, blank=True)
 
     def __repr__(self):
-        return (f"Setting <'class'> {self.appName}")
+        return (f"Setting {self.appName}")
 

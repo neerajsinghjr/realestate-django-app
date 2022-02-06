@@ -14,7 +14,7 @@ class Listing(Schema.Model):
     #-------------------
 
     # Table Key
-    realtor_id = Schema.ForeignKey(Realtor, on_delete=Schema.DO_NOTHING)
+    realtor = Schema.ForeignKey(Realtor, on_delete=Schema.DO_NOTHING)
     title = Schema.CharField(max_length=256)
     address = Schema.CharField(max_length=512)
     city = Schema.CharField(max_length=256)

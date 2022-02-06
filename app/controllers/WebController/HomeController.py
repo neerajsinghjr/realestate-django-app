@@ -69,10 +69,8 @@ class HomeController(Controller):
     def listing(self, request, eid):
         try:
             listing = Listing.objects.get(pk=eid)
-            topSeller = Realtor.objects.all().filter(top_seller = True).get()
             context = {
                 'listing' : listing,
-                'topSeller' : topSeller,
             }
             return render(request, 'web/views/listing.html', context)
 

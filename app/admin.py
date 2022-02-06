@@ -7,7 +7,7 @@ from .models import *
 
 class ListingAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'published', 'price', 'address', 'city', 'state', 'created')
-    list_display_links = ('id', 'title')
+    list_display_links = ('id', 'title',)
     list_filter = ('city', 'state')
     list_editable = ('published',)
     list_per_page = 25
@@ -25,8 +25,8 @@ class RealtorAdmin(admin.ModelAdmin):
     list_editable = ('top_seller',)
 
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'phone', 'created')
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'email', 'username', 'phone', 'created')
     list_display_links = ('id', 'name', 'email')
     search_fields = ('name', 'email', 'phone')
     list_per_page = 25
@@ -42,7 +42,7 @@ class SettingAdmin(admin.ModelAdmin):
 # REGISTER MODEL AND ADMIN SCHEMA;
 admin.site.register(Listing, ListingAdmin)
 admin.site.register(Realtor, RealtorAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Setting, SettingAdmin)
 
 
